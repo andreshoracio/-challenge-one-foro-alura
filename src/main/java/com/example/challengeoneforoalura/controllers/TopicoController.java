@@ -25,4 +25,9 @@ public class TopicoController {
     public ResponseEntity<List<TopicoDto>> listarTopicos(){
         return ResponseEntity.ok(topicoService.obtenerTopicos());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TopicoDto> obtenerTopico(@PathVariable("id") long id){
+        return ResponseEntity.ok(topicoService.obtenerTopico(id));
+    }
 }

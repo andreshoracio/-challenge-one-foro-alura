@@ -24,6 +24,10 @@ public class TopicoService {
                 .stream().map(topico -> toDto(topico)).collect(Collectors.toList());
     }
 
+    public TopicoDto obtenerTopico(long id){
+        return toDto( topicoRepository.findById(id).get() );
+    }
+
 
 
 
