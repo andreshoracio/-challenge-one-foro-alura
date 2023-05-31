@@ -28,6 +28,24 @@ public class TopicoService {
         return toDto( topicoRepository.findById(id).get() );
     }
 
+    public TopicoDto actualizarTopico(TopicoDto topicoDto, long id) throws Exception {
+        Topico topico = topicoRepository.findById(id)
+                .orElseThrow(() -> new Exception("Topico con id: " + id + "no encontrado"));
+        topico.setTitulo(topicoDto.getTitulo());
+        topico.setMensaje(topicoDto.getMensaje());
+        topico.setEstatus(topicoDto.getEstatus());
+        topico.setAutor(topicoDto.getAutor());
+        topico.setCurso(topicoDto.getCurso());
+
+        return toDto(topicoRepository.save(topico));
+    }
+
+    public void eleminarTopico(long id) throws Exception {
+        Topico topico = topicoRepository.findById(id)
+                .orElseThrow(() -> new Exception("Topico con id: " + id + "no encontrado"));
+        topicoRepository.deleteById(id);
+    }
+
 
 
 

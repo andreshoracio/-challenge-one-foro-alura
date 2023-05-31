@@ -30,4 +30,19 @@ public class TopicoController {
     public ResponseEntity<TopicoDto> obtenerTopico(@PathVariable("id") long id){
         return ResponseEntity.ok(topicoService.obtenerTopico(id));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TopicoDto> actualizarTopico(
+            @PathVariable("id") long id,
+            @RequestBody TopicoDto topicoDto
+    ) throws Exception {
+        return new ResponseEntity<>(topicoService.actualizarTopico(topicoDto, id), HttpStatus.CREATED);
+    }
+
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminarTopico(@PathVariable("id") long id) throws Exception {
+        topicoService.eleminarTopico(id);
+    }
 }
